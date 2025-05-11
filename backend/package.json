@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "movie database api",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anton mcquinn",
+  "license": "ISC",
+  "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.42",
+    "@sequelize/postgres": "^7.0.0-alpha.46",
+    "dotenv": "^16.5.0",
+    "expres": "^0.0.5",
+    "express": "^5.1.0",
+    "pg": "^8.15.6",
+    "sequelize": "^6.37.7",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "tslint": "^6.1.3"
+  }
+}
