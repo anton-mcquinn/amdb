@@ -76,6 +76,7 @@ const getMovies = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getMovies = getMovies;
 const addLike = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { id } = req.body;
         const sqlQuery = 'UPDATE movies SET likes = likes + 1 WHERE id = $1 RETURNING *';
         const result = yield db.query(sqlQuery, [req.body.id]);
         res.status(200).json({ message: 'Like added successfully' });

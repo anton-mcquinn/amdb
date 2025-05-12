@@ -38,6 +38,7 @@ export const getMovies = async (req: Request, res: Response): Promise<void> => {
 
 export const addLike = async (req: Request, res: Response): Promise<void> => {
   try {
+    const { id } = req.body
     const sqlQuery = 'UPDATE movies SET likes = likes + 1 WHERE id = $1 RETURNING *'
     const result = await db.query(sqlQuery, [req.body.id])
     res.status(200).json({ message: 'Like added successfully' })
