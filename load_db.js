@@ -1,8 +1,8 @@
-const movies = require("./movies-2000s.json");
+const movies = require("./movies.json");
 const genres = require("./genres.json");
 
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("amdb", "anthonymcintosh", null, {
+const sequelize = new Sequelize("amdb", "postgres", "postgres", {
   host: "localhost",
   port: 5432,
   dialect: "postgres",
@@ -37,30 +37,33 @@ const Movie = sequelize.define(
       autoIncrement: true,
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1234),
     }, 
     year: {
       type: DataTypes.INTEGER,
     },
     cast: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING(1234)),
     },
     genres: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING(1234)),
     },
     href: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1234),
     },
     extract: {
       type: DataTypes.TEXT,
     },
     thumbnail: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1234),
     },
     thumbnail_width: {
       type: DataTypes.INTEGER,
     },
     thumbnail_height: {
+      type: DataTypes.INTEGER,
+    },
+    likes: {
       type: DataTypes.INTEGER,
     },
   }

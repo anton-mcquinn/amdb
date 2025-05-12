@@ -16,13 +16,14 @@
     "@sequelize/core": "^7.0.0-alpha.42",
     "@sequelize/postgres": "^7.0.0-alpha.46",
     "dotenv": "^16.5.0",
-    "expres": "^0.0.5",
     "express": "^5.1.0",
     "pg": "^8.15.6",
     "sequelize": "^6.37.7",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/pg": "^8.15.1",
     "tslint": "^6.1.3"
   }
 }
