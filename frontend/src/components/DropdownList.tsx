@@ -11,5 +11,4 @@ function DropdownList({ children, ...props }) {
   );
 };
 
-// optional - but I like this pattern to know it must be a child of Dropdown
 Dropdown.List = DropdownList;
