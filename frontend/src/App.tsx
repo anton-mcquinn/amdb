@@ -5,11 +5,10 @@ import './App.css'
 
 import dbConnect, { fetchByGenreAndDecade, fetchByDecade, fetchGenres, fetchByGenre } from './utils/dbConnect.ts'
 import {decades} from './utils/decades.ts'
+import { MovieTile } from './components/MovieTile.tsx'
 import { Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 
 interface Movie {
   id: number;
@@ -161,20 +160,8 @@ return (
           renderInput={(params) => <TextField {...params} label="decade" />}
         />
       </Box>
-      
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <ImageList sx={{ width: 800, height: 900 }} variant="woven" cols={4} gap={15}>
-          {movieData.map((item) => (
-            <ImageListItem key={item.id}>
-              <img
-                src={`${item.thumbnail}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.thumbnail}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
+          <MovieTile movieData={movieData} />
       </Box>
     </Box>
   </>

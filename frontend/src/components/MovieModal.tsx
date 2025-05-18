@@ -1,0 +1,105 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+interface MovieModalProps {
+  movie: {
+    id: number;
+    title: string;
+    year?: number;
+    genres?: string[];
+    description?: string;
+    cast?: string[];
+    thumbnail: string;
+    release_date?: string;
+    extract?: string;
+  } | null;
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function MovieModal({ movie, open, onClose }: MovieModalProps) {
+  if (!movie) {
+    return null;
+  }
+  
+  return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box 
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "80%",
+          maxWidth: "1200px",
+          bgcolor: "background.paper",
+          boxShadow: 24,
+          p: 4,
+          borderRadius: "8px",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: 3,
+          maxHeight: "90vh",
+          overflow: "auto"
+        }}
+      >
+        <Box 
+          sx={{ 
+            flex: { xs: "1 1 100%", md: "0 0 300px" },
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <img
+            src={movie.thumbnail}
+            alt={movie.title}
+            style={{ 
+              maxWidth: "100%", 
+              height: "auto", 
+              objectFit: "cover",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
+            }}
+          />
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h4" gutterBottom textAlign="center" color="text.primary">
+            {movie.title}
+          </Typography>
+          {movie.year && (
+            <Typography variant="h6" gutterBottom textAlign="center" color="text.secondary">
+              {movie.year}
+            </Typography>
+          )}
+          {movie.extract && (
+            <Typography variant="body1" color="text.secondary" paragraph>
+              {movie.extract}
+            </Typography>
+          )}
+          {movie.description && (
+            <Typography variant="body1" paragraph>
+              {movie.description}
+            </Typography>
+          )}
+          {movie.genres && (
+            <Typography variant="body2" color="text.secondary">
+              Genres: {movie.genres.join(", ")}
+            </Typography>
+          )}
+          {movie.cast && (
+            <Typography variant="body2" color="text.secondary">
+              Cast: {movie.cast.join(", ")}
+            </Typography>
+          )}
+        </Box>
+      </Box>
+    </Modal>
+  );
+}
