@@ -141,20 +141,19 @@ return (
         options={genres}
         sx={{ 
           width: 300,
-          // Basic appearance
           backgroundColor: 'black',
           borderRadius: 2,
           boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
           color: 'white',
           
-          // Input styling
+          // Input
           '& .MuiInputBase-root': {
             padding: '2px 8px',
             backgroundColor: 'black',
             color: 'white',
           },
           
-          // Label styling
+          // Label
           '& .MuiInputLabel-root': {
             backgroundColor: 'black',
             color: 'white',
@@ -162,7 +161,7 @@ return (
             fontWeight: 500,
           },
           
-          // Border styling
+          // Border
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: 'grey.400',
           },
@@ -170,9 +169,10 @@ return (
             borderColor: 'primary.main',
           },
           
-          // Dropdown styling
+          // Dropdown
           '& .MuiAutocomplete`': {
             backgroundColor: 'black',
+            color: 'white',
             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
           },
           '& .MuiAutocomplete-listbox': {
@@ -180,11 +180,16 @@ return (
             backgroundColor: 'black',
             color: 'white',
             },
+          '& .MuiAutocomplete-inputFocused': {
+            backgroundColor: 'black',
+            color: 'white',
+          },
           
-          // Option styling
+          // Option
           '& .MuiAutocomplete-option': {
             '&:hover': {
               backgroundColor: 'black',
+              color: 'white',
             },
             '&[aria-selected="true"]': {
               backgroundColor: 'black',
@@ -204,20 +209,19 @@ return (
           options={decades}
           sx={{ 
             width: 300,
-            // Basic appearance
             backgroundColor: 'black',
             borderRadius: 2,
             boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
             color: 'white',
             
-            // Input styling
+            // Input
             '& .MuiInputBase-root': {
               padding: '2px 8px',
               backgroundColor: 'black',
               color: 'white',
             },
             
-            // Label styling
+            // Label
             '& .MuiInputLabel-root': {
               backgroundColor: 'black',
               color: 'white',
@@ -225,7 +229,7 @@ return (
               fontWeight: 500,
             },
             
-            // Border styling
+            // Border
             '& .MuiOutlinedInput-notchedOutline': {
               borderColor: 'grey.400',
             },
@@ -233,7 +237,7 @@ return (
               borderColor: 'primary.main',
             },
             
-            // Dropdown styling
+            // Dropdown
             '& .MuiAutocomplete`': {
               backgroundColor: 'black',
               boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
@@ -244,7 +248,7 @@ return (
               color: 'white',
               },
             
-            // Option styling
+            // Option
             '& .MuiAutocomplete-option': {
               '&:hover': {
                 backgroundColor: 'black',
