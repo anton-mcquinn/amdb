@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 const dbConnect = async () => {
   try {
     const baseURL = 'http://localhost:3000'
-    const response = await axios.get(`${baseURL}/movies`);
+    const response = await axios.get(`${baseURL}/movies?decade=2020s`);
     console.log('Connected to the database:', response.data);
     return response.data;
   } catch (error) {
