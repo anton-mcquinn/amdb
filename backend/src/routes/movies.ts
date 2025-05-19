@@ -38,13 +38,26 @@ export const getMovies = async (req: Request, res: Response): Promise<void> => {
 
 export const addLike = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.body
-    const sqlQuery = 'UPDATE movies SET likes = likes + 1 WHERE id = $1 RETURNING *'
-    const result = await db.query(sqlQuery, [req.body.id])
-    res.status(200).json({ message: 'Like added successfully' })
+    const { id, rating } = req.body;
+    
+    if (!id || rating === undefined) {
+      res.status(400).json({ error: 'Missing required parameters: id and rating' });
+      return;
+    }
+    const sqlQuery = 'UPDATE movies SET likes = $1 WHERE id = $2 RETURNING *';
+    const result = await db.query(sqlQuery, [rating, id]);
+    console.log('Result:', result);
+    
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'Movie not found' });
+      return;
+    }
+    res.status(200).json({ 
+      message: 'Rating updated successfully', 
+      movie: result.rows[0] 
+    });
   } catch (error) {
-    console.error('Error adding like:', error)
-    res.status(500).json({ error: 'Internal server error' })
+    console.error('Error updating rating:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
-
