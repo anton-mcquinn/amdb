@@ -7,7 +7,7 @@ import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-import addRating from '../utils/dbConnect.ts';
+import { addRating } from '../utils/dbConnect.ts';
 
 interface MovieModalProps {
   movie: {
@@ -49,8 +49,8 @@ export default function MovieModal({ movie, open, onClose }: MovieModalProps) {
     setRating(newValue);
     if (movie.id && newValue !== null) {
       try {
-        const response = await setRating(movie.id, newValue);
-        console.log('Rating updated:', newValue, movie.id);
+        const response = await addRating(movie.id, newValue);
+        console.log('Rating updated:', response);
       } catch (error) {
         console.error('Error updating rating:', error);
       }

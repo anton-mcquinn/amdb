@@ -60,6 +60,7 @@ export const fetchByGenreAndDecade = async (genre: string, decade: string) => {
 }
 
 export const addRating = async (id: number, rating: number) => {
+    console.log('Adding rating:', id, rating);
   try {
     const baseURL = 'http://localhost:3000'
     const response = await axios.post(`${baseURL}/movies/like`, { id, rating });
