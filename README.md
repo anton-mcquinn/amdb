@@ -29,11 +29,11 @@ The project uses React for the frontend, Express for the backend, and PostgreSQL
 
 ## 🚀 Features
 
-- **Main Branch**: Basic movie browsing functionality with filtering
-- **Ratings Branch**: Enhanced features including:
-  - Star-rating system for movies
-  - User preference tracking
-  - Personalized movie recommendations
+- Basic movie browsing functionality with filtering by:
+  - Genre
+  - Decade
+- Star-rating system for movies
+- Personalized movie recommendations (not working yet)
 
 ## 📋 Prerequisites
 
@@ -55,9 +55,6 @@ cd amdb
 Install dependencies for both backend and frontend:
 
 ```bash
-# Root directory dependencies
-npm install
-
 # Backend dependencies
 cd backend
 npm install
