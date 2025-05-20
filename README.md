@@ -12,6 +12,7 @@
 - [wikipedia-movie-data](https://github.com/prust/wikipedia-movie-data?tab=readme-ov-file)
 - [How to set up a node.js backend with typescript](https://dev.to/sulistef/how-to-set-up-a-nodejs-backend-using-expressjs-and-typescript-1655)
 - [Node-Postgres docs](https://node-postgres.com/apis/pool)
+- Github Copilot was used for some boilerplate code, and Claude was used minimally for some debugging.
 
 
 A movie database application built for a Cornerstone Systems Northwest interview project.
@@ -77,9 +78,10 @@ createdb amdb
 ### 4. Environment Configuration
 
 
-Create a `.env` file in the rootdirectory using the provided example:
+Create a `.env` file in the backend directory using the provided example:
 
 ```bash
+cd backend
 cp .env.example .env
 ```
 
@@ -87,8 +89,7 @@ Edit the `.env` file with your database credentials if they differ from the defa
 
 ### 5. Seed the Database
 
-Run the database seeding script:
-
+Run the database seeding script (make sure you're in the backend directory):
 ```bash
 node load_db.js
 ```
@@ -98,11 +99,6 @@ This will create all necessary tables and populate them with data from the inclu
 ## 🏃‍♂️ Running the Application
 
 ### Start the Backend
-Create a .env in the backend directory using the provided example:
-
-```bash
-cd backend
-cp .env.example .env
 ```
 npm run start
 ```
