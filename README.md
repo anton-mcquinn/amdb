@@ -5,6 +5,15 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 
+#### Additional sources used for this project:
+- [Sequelize Documentation](https://sequelize.org/)
+- [Material-UI Documentation](https://mui.com/)
+- [Bulk Insert JSON Data into PostgreSQL](https://dev.to/yugabyte/bulk-loading-data-in-postgresql-with-nodejs-and-sequelize-1bn7)
+- [wikipedia-movie-data](https://github.com/prust/wikipedia-movie-data?tab=readme-ov-file)
+- [How to set up a node.js backend with typescript](https://dev.to/sulistef/how-to-set-up-a-nodejs-backend-using-expressjs-and-typescript-1655)
+- [Node-Postgres docs](https://node-postgres.com/apis/pool)
+
+
 A movie database application built for a Cornerstone Systems Northwest interview project.
 
 ## 📝 Description
