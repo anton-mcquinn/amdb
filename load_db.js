@@ -1,18 +1,26 @@
 const movies = require("./movies.json");
 const genres = require("./genres.json");
-
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("amdb", "postgres", "postgres", {
-  host: "localhost",
-  port: 5432,
-  dialect: "postgres",
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME, 
+  process.env.POSTGRES_USER, 
+  process.env.POSTGRES_PASS, 
+  {
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT, 10),
+    dialect: "postgres",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    }
   }
-});
+);
 
 const User = sequelize.define(
   "users",
