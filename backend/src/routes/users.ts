@@ -82,6 +82,9 @@ export const get3Star = async (req: Request, res: Response): Promise<void> => {
       message: '3-star movies retrieved successfully',
       movies: result.rows[0].threeStarMovies
     });
+  } catch (error) {
+    console.error('Error retrieving 3-star movies:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
 
@@ -97,6 +100,9 @@ export const get4Star = async (req: Request, res: Response): Promise<void> => {
       message: '3-star movies retrieved successfully',
       movies: result.rows[0].threeStarMovies
     });
+  } catch (error) {
+    console.error('Error retrieving 4-star movies:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
 
@@ -112,6 +118,9 @@ export const get5Star = async (req: Request, res: Response): Promise<void> => {
       message: '3-star movies retrieved successfully',
       movies: result.rows[0].threeStarMovies
     });
+  } catch (error) {
+    console.error('Error retrieving 5-star movies:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
 

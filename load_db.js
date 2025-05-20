@@ -44,8 +44,6 @@ const User = sequelize.define(
     },
   }
 );
-=======
->>>>>>> main
 
 const Genre = sequelize.define(
   "genre",

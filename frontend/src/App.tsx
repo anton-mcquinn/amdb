@@ -163,14 +163,19 @@ function App() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                 color: 'white',
                 
-                // Input
                 '& .MuiInputBase-root': {
                   padding: '2px 8px',
                   backgroundColor: 'black',
                   color: 'white',
                 },
+                  // the dropdown arrows
+                  '& .MuiAutocomplete-popupIndicator': {
+                    color: 'white', 
+                  },
+                  '& .MuiAutocomplete-endAdornment': {
+                    visibility: 'visible', 
+                  },
                 
-                // Label
                 '& .MuiInputLabel-root': {
                   backgroundColor: 'black',
                   color: 'white',
@@ -178,7 +183,6 @@ function App() {
                   fontWeight: 500,
                 },
                 
-                // Border
                 '& .MuiOutlinedInput-notchedOutline': {
                   borderColor: 'grey.400',
                 },
@@ -186,7 +190,6 @@ function App() {
                   borderColor: 'primary.main',
                 },
                 
-                // Dropdown
                 '& .MuiAutocomplete`': {
                   backgroundColor: 'black',
                   color: 'white',
@@ -202,7 +205,6 @@ function App() {
                   color: 'white',
                 },
                 
-                // Option
                 '& .MuiAutocomplete-option': {
                   '&:hover': {
                     backgroundColor: 'black',
@@ -231,14 +233,19 @@ function App() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                 color: 'white',
                 
-                // Input
                 '& .MuiInputBase-root': {
                   padding: '2px 8px',
                   backgroundColor: 'black',
                   color: 'white',
                 },
+                  // the dropdown arrows
+                  '& .MuiAutocomplete-popupIndicator': {
+                    color: 'white', 
+                  },
+                  '& .MuiAutocomplete-endAdornment': {
+                    visibility: 'visible', 
+                  },
                 
-                // Label
                 '& .MuiInputLabel-root': {
                   backgroundColor: 'black',
                   color: 'white',
@@ -246,7 +253,6 @@ function App() {
                   fontWeight: 500,
                 },
                 
-                // Border
                 '& .MuiOutlinedInput-notchedOutline': {
                   borderColor: 'grey.400',
                 },
@@ -254,7 +260,6 @@ function App() {
                   borderColor: 'primary.main',
                 },
                 
-                // Dropdown
                 '& .MuiAutocomplete`': {
                   backgroundColor: 'black',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
@@ -265,7 +270,6 @@ function App() {
                   color: 'white',
                 },
                 
-                // Option
                 '& .MuiAutocomplete-option': {
                   '&:hover': {
                     backgroundColor: 'black',
