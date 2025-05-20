@@ -37,7 +37,6 @@ export const getMovies = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const addLike = async (req: Request, res: Response): Promise<void> => {
-  console.log('Adding like to movie:', req.body)
   try {
     const { id, rating } = req.body;
 
@@ -47,7 +46,6 @@ export const addLike = async (req: Request, res: Response): Promise<void> => {
     }
     const sqlQuery = 'UPDATE movies SET likes = $1 WHERE id = $2 RETURNING *';
     const result = await db.query(sqlQuery, [rating, id]);
-    console.log('Result:', result);
 
     if (result.rowCount === 0) {
       res.status(404).json({ error: 'Movie not found' });

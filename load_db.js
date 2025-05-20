@@ -14,6 +14,30 @@ const sequelize = new Sequelize("amdb", "postgres", "postgres", {
   }
 });
 
+const User = sequelize.define(
+  "users",
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+    decade: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    genre: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    fiveStarMovies: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    },
+    fourStarMovies: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    },
+    threeStarMovies: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    },
+  }
+);
+
 const Genre = sequelize.define(
   "genre",
   {
@@ -75,6 +99,16 @@ async function seedDatabase() {
     await sequelize.sync({ force: true });
     await Genre.bulkCreate(genres);
     await Movie.bulkCreate(movies);
+    await User.bulkCreate([
+      {
+        name: "Default User",
+        decade: [],
+        genre: [],
+        fiveStarMovies: [],
+        fourStarMovies: [],
+        threeStarMovies: [],
+      },
+    ]);
     console.log("Database seeded successfully.");
   } catch(e) {
     console.log("Error seeding database with movies:", e);
