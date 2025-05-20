@@ -96,6 +96,7 @@ export const updateFavoriteGenres = async (req, res) => {
       message: 'Favorite genres updated successfully',
       genres: popularGenres 
     });
+    return popularGenres;
   } catch (error) {
     console.error('Failed to update favorite genres:', error);
     res.status(500).json({ error: 'Failed to update favorite genres' });
@@ -120,7 +121,6 @@ export const updateFavoriteDecades = async (req, res) => {
     const results = await Promise.all(
       popularDecades.map(decade => addFavDecade(decade))
     );
-    
     res.status(200).json({ 
       message: 'Favorite decades updated successfully',
       decades: popularDecades 

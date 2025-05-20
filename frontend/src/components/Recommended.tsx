@@ -6,6 +6,8 @@ import { MovieTile } from './MovieTile';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 
+import { updateFavoriteGenres } from '../utils/userPrefs';
+
 interface Movie {
   id: number;
   title: string;
@@ -28,6 +30,7 @@ export default function Recommended() {
   const fetchRecommendedMovies = async () => {
     try {
       setLoading(true);
+      const genres = 0;
       
       if (genres.length === 0 && decades.length === 0) {
         setError("No favorite genres or decades found. Rate some movies to get recommendations!");
@@ -35,32 +38,6 @@ export default function Recommended() {
         return;
       }
       
-      let moviesResponse;
-      if (genres.length > 0 && decades.length > 0) {
-        const randomGenre = genres[Math.floor(Math.random() * genres.length)];
-        const randomDecade = decades[Math.floor(Math.random() * decades.length)];
-        
-        moviesResponse = await axios.get(
-          `${baseURL}/movies?genre=${randomGenre}&decade=${randomDecade}`
-        );
-      } else if (genres.length > 0) {
-        const randomGenre = genres[Math.floor(Math.random() * genres.length)];
-        moviesResponse = await axios.get(`${baseURL}/movies?genre=${randomGenre}`);
-      } else {
-        const randomDecade = decades[Math.floor(Math.random() * decades.length)];
-        moviesResponse = await axios.get(`${baseURL}/movies?decade=${randomDecade}`);
-      }
-      
-      const fiveStarResponse = await axios.get(`${baseURL}/users5`);
-      const fiveStarIds = fiveStarResponse.data.movies || [];
-      
-      let recommendedMovies = moviesResponse.data.filter(
-        (movie: Movie) => !fiveStarIds.includes(movie.id)
-      );
-      
-      if (recommendedMovies.length > 20) {
-        recommendedMovies = shuffleArray(recommendedMovies).slice(0, 20);
-      }
       
       setRecommendedMovies(recommendedMovies);
       setLoading(false);

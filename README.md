@@ -12,8 +12,7 @@
 - [wikipedia-movie-data](https://github.com/prust/wikipedia-movie-data?tab=readme-ov-file)
 - [How to set up a node.js backend with typescript](https://dev.to/sulistef/how-to-set-up-a-nodejs-backend-using-expressjs-and-typescript-1655)
 - [Node-Postgres docs](https://node-postgres.com/apis/pool)
-- Github Copilot was used for some boilerplate code, and Claude was used minimally for some debugging.
-
+- Github Copilot was used for this project
 
 A movie database application built for a Cornerstone Systems Northwest interview project.
 
@@ -24,8 +23,6 @@ This project is a full-stack Movie Database web application that allows users to
 - Browse movies by genre and decade
 - Rate movies with a star-based system
 - Get personalized movie recommendations based on ratings
-
-The project uses React for the frontend, Express for the backend, and PostgreSQL for data storage.
 
 ## 🚀 Features
 
@@ -110,41 +107,50 @@ In a new terminal:
 cd frontend
 npm run dev
 ```
+To view the application, navigate to http://localhost:5173 in your web browser.
 
-The frontend development server will start and open in your default browser.
-
-## 💻 Usage
-
-1. Browse the main page to see all movies
-2. Use the genre and decade filters to find specific movies
-3. If using the ratings branch, rate movies to get personalized recommendations
 
 ## 🔍 Project Structure
 
 ```
-amdb/
-├── backend/         # Express backend code
-│   ├── src/         # Source files
-│   └── ...
-├── frontend/        # React frontend code
-│   ├── src/         # Source files
-│   └── ...
-├── load_db.js       # Database seeding script
-├── movies.json      # Movie data
-└── genres.json      # Genre data
-```
+├── backend
+│   ├── src
+│   │   ├── db
+│   │   │   └── index.ts
+│   │   ├── routes
+│   │   │   ├── genres.ts
+│   │   │   ├── index.ts
+│   │   │   ├── movies.ts
+│   │   │   └── users.ts
+│   │   ├── app.ts
+│   │   └── index.ts
+│   ├── genres.json
+│   ├── load_db.js
+│   ├── movies.json
+├── frontend
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── components
+│   │   │   ├── Dropdown.tsx
+│   │   │   ├── MovieModal.tsx
+│   │   │   ├── MovieTile.tsx
+│   │   │   └── Recommended.tsx
+│   │   ├── types
+│   │   │   └── types.ts
+│   │   ├── utils
+│   │   │   ├── dbConnect.ts
+│   │   │   ├── decades.ts
+│   │   │   └── userPrefs.ts
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── main.tsx```
 
 ## 🧪 Technologies Used
 
 - **Frontend**: React, TypeScript, Material-UI
 - **Backend**: Node.js, Express, TypeScript
 - **Database**: PostgreSQL
-- **ORM**: Sequelize
+- **ORM**: Sequelize, node-postgres
 
-## 👤 Author
-
-- **Anton McQuinn**
-
----
-
-*This project was created for an interview with Cornerstone Systems Northwest.*
