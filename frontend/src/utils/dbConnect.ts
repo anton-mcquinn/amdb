@@ -95,6 +95,50 @@ export const addFavMovie = async (id: number, rating: number) => {
   }
 }
 
+export const addFavGenre = async (genre: string) => {
+  try {
+    const response = await axios.post(`${baseURL}/users/genre`, { genre });
+    console.log('Favorite genre added:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding favorite genre:', error);
+  }
+}
+
+export const addFavDecade = async (decade: string) => {
+  try {
+    const response = await axios.post(`${baseURL}/users/decade`, { decade });
+    console.log('Favorite decade added:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding favorite decade:', error);
+  }
+}
+
+export const fetchStarMovies = async (rating: number) => {
+  try {
+    let endpoint;
+    switch (rating) {
+      case 3:
+        endpoint = '/users3';
+        break;
+      case 4:
+        endpoint = '/users4';
+        break;
+      case 5:
+        endpoint = '/users5';
+        break;
+      default:
+        throw new Error('Invalid rating');
+    }
+    const response = await axios.get(`${baseURL}${endpoint}`);
+    console.log('Star movies:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching star movies:', error);
+  }
+}
+
 export default dbConnect;
 
 

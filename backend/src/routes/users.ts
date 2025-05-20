@@ -69,6 +69,52 @@ export const add5Star = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
+
+export const get3Star = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const sqlQuery = 'SELECT "threeStarMovies" FROM users';
+    const result = await db.query(sqlQuery, [req.params.id]);
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'User not found' });
+      return;
+    }
+    res.status(200).json({
+      message: '3-star movies retrieved successfully',
+      movies: result.rows[0].threeStarMovies
+    });
+  }
+}
+
+export const get4Star = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const sqlQuery = 'SELECT "fourStarMovies" FROM users';
+    const result = await db.query(sqlQuery, [req.params.id]);
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'User not found' });
+      return;
+    }
+    res.status(200).json({
+      message: '3-star movies retrieved successfully',
+      movies: result.rows[0].threeStarMovies
+    });
+  }
+}
+
+export const get5Star = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const sqlQuery = 'SELECT "fiveStarMovies" FROM users';
+    const result = await db.query(sqlQuery, [req.params.id]);
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'User not found' });
+      return;
+    }
+    res.status(200).json({
+      message: '3-star movies retrieved successfully',
+      movies: result.rows[0].threeStarMovies
+    });
+  }
+}
+
 export const addFavGenre = async (req: Request, res: Response): Promise<void> => {
   try {
     const { genre } = req.body;

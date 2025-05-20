@@ -8,6 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { addRating } from '../utils/dbConnect.ts';
+import { updateFavoriteGenres } from '../utils/userPrefs.ts';
 
 interface MovieModalProps {
   movie: {
