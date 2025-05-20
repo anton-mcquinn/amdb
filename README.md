@@ -67,7 +67,8 @@ createdb amdb
 
 ### 4. Environment Configuration
 
-Create a `.env` file in the backend directory using the provided example:
+
+Create a `.env` file in the rootdirectory using the provided example:
 
 ```bash
 cp .env.example .env
@@ -88,9 +89,12 @@ This will create all necessary tables and populate them with data from the inclu
 ## 🏃‍♂️ Running the Application
 
 ### Start the Backend
+Create a .env in the backend directory using the provided example:
 
 ```bash
 cd backend
+cp .env.example .env
+```
 npm run start
 ```
 
