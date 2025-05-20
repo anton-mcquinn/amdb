@@ -1,40 +1,144 @@
-# amdb
-Anton's Movie Database - A CSNW Interview Project
+# 🎬 AMDB - Anton's Movie Database
 
-## Description
-This project was prepared for an interview with Cornerstone Systems Northwest. The project consists of a simple Movie Database
-web application that will allow a user to sort by Genre and Decade. The branch titled 'ratings' has an implementation of a rating system for users to add "stars" to movies they like and in return get suggestions based on their liked movies.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 
-## How to run the application
-1. Clone the repository to your local machine.
+A movie database application built for a Cornerstone Systems Northwest interview project.
+
+## 📝 Description
+
+This project is a full-stack Movie Database web application that allows users to:
+
+- Browse movies by genre and decade
+- Rate movies with a star-based system
+- Get personalized movie recommendations based on ratings
+
+The project uses React for the frontend, Express for the backend, and PostgreSQL for data storage.
+
+## 🚀 Features
+
+- **Main Branch**: Basic movie browsing functionality with filtering
+- **Ratings Branch**: Enhanced features including:
+  - Star-rating system for movies
+  - User preference tracking
+  - Personalized movie recommendations
+
+## 📋 Prerequisites
+
+- Node.js (v14+)
+- npm or yarn
+- PostgreSQL
+
+## 🛠️ Installation & Setup
+
+### 1. Clone the repository
+
 ```bash
-git clone git@github.com:anton-mcquinn/amdb.git ```
-2. Navigate to the project directory.
-```bash 
-cd amdb ```
-3. Install the required dependencies.
-```bash 
-npm install ```
-4. Create a PostgreSQL Database
-```bash
-createdb amdb ```
-5. Create a .env file using the .env.example file as a template.
+git clone git@github.com:anton-mcquinn/amdb.git
+cd amdb
+```
 
-### Seeding the Database
-Seeding the database will happen using the included load_db.js file. This file will create the necessary tables and seed them with data from the included genres.json and movies.json files.
+### 2. Install dependencies
+
+Install dependencies for both backend and frontend:
+
+```bash
+# Root directory dependencies
+npm install
+
+# Backend dependencies
+cd backend
+npm install
+
+# Frontend dependencies
+cd ../frontend
+npm install
+```
+
+### 3. Database Setup
+
+Create a PostgreSQL database:
+
+```bash
+createdb amdb
+```
+
+### 4. Environment Configuration
+
+Create a `.env` file in the backend directory using the provided example:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file with your database credentials if they differ from the defaults.
+
+### 5. Seed the Database
+
+Run the database seeding script:
 
 ```bash
 node load_db.js
 ```
-6. Start the Backend
+
+This will create all necessary tables and populate them with data from the included JSON files.
+
+## 🏃‍♂️ Running the Application
+
+### Start the Backend
+
 ```bash
 cd backend
 npm run start
 ```
-7. Start the Frontend
-```bash 
+
+The backend server will start on http://localhost:3000.
+
+### Start the Frontend
+
+In a new terminal:
+
+```bash
 cd frontend
 npm run dev
 ```
-8. Open a browser and navigate to http://localhost:3000 to view the application.
 
+The frontend development server will start and open in your default browser.
+
+## 💻 Usage
+
+1. Browse the main page to see all movies
+2. Use the genre and decade filters to find specific movies
+3. If using the ratings branch, rate movies to get personalized recommendations
+
+## 🔍 Project Structure
+
+```
+amdb/
+├── backend/         # Express backend code
+│   ├── src/         # Source files
+│   └── ...
+├── frontend/        # React frontend code
+│   ├── src/         # Source files
+│   └── ...
+├── load_db.js       # Database seeding script
+├── movies.json      # Movie data
+└── genres.json      # Genre data
+```
+
+## 🧪 Technologies Used
+
+- **Frontend**: React, TypeScript, Material-UI
+- **Backend**: Node.js, Express, TypeScript
+- **Database**: PostgreSQL
+- **ORM**: Sequelize
+
+## 👤 Author
+
+- **Anton McQuinn**
+
+---
+
+*This project was created for an interview with Cornerstone Systems Northwest.*
