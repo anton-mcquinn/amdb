@@ -6,9 +6,10 @@ import './App.css'
 import dbConnect, { fetchByGenreAndDecade, fetchByDecade, fetchGenres, fetchByGenre } from './utils/dbConnect.ts'
 import {decades} from './utils/decades.ts'
 import { MovieTile } from './components/MovieTile.tsx'
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Recommended from './components/Recommended.tsx';
 
 interface Movie {
   id: number;
@@ -31,6 +32,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [genres, setGenres] = useState<string[]>([]);
   const [decade, setDecade] = useState<string[]>([]);
+  const [showRecommended, setShowRecommended] = useState(false);
 
   const getGenres = async () => {
     try {
@@ -107,9 +109,7 @@ function App() {
     }
   }
 
-
-return (
-  <>
+  return (
     <Box sx={{ 
       display: 'flex',
       flexDirection: 'column',
@@ -125,152 +125,170 @@ return (
         marginBottom: '30px', 
       }}>
         <h1>Anton's Movie Database</h1>
-      </Box>  
+      </Box>
       
       <Box sx={{
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center', 
-        alignItems: 'center',
-        gap: 5,
-        marginBottom: '20px' 
+        justifyContent: 'center',
+        mb: 3
       }}>
-      <Autocomplete
-        disablePortal
-        id="genre-autocomplete"
-        options={genres}
-        sx={{ 
-          width: 300,
-          backgroundColor: 'black',
-          borderRadius: 2,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-          color: 'white',
-          
-          // Input
-          '& .MuiInputBase-root': {
-            padding: '2px 8px',
-            backgroundColor: 'black',
-            color: 'white',
-          },
-          
-          // Label
-          '& .MuiInputLabel-root': {
-            backgroundColor: 'black',
-            color: 'white',
-            fontSize: '0.9rem',
-            fontWeight: 500,
-          },
-          
-          // Border
-          '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'grey.400',
-          },
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'primary.main',
-          },
-          
-          // Dropdown
-          '& .MuiAutocomplete`': {
-            backgroundColor: 'black',
-            color: 'white',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-          },
-          '& .MuiAutocomplete-listbox': {
-            padding: 1,
-            backgroundColor: 'black',
-            color: 'white',
-            },
-          '& .MuiAutocomplete-inputFocused': {
-            backgroundColor: 'black',
-            color: 'white',
-          },
-          
-          // Option
-          '& .MuiAutocomplete-option': {
-            '&:hover': {
-              backgroundColor: 'black',
-              color: 'white',
-            },
-            '&[aria-selected="true"]': {
-              backgroundColor: 'black',
-            },
-          },
-        }}
-        value={filter.genre}
-        onChange={(event, newValue) => {
-          console.log('Selected genre:', newValue);
-          setFilter(prev => ({...prev, genre: newValue || ''}));
-        }}
-        renderInput={(params) => <TextField {...params} label="Genres" />}
-      />        
-          <Autocomplete
-          disablePortal
-          id="decade-autocomplete"
-          options={decades}
-          sx={{ 
-            width: 300,
-            backgroundColor: 'black',
-            borderRadius: 2,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            color: 'white',
-            
-            // Input
-            '& .MuiInputBase-root': {
-              padding: '2px 8px',
-              backgroundColor: 'black',
-              color: 'white',
-            },
-            
-            // Label
-            '& .MuiInputLabel-root': {
-              backgroundColor: 'black',
-              color: 'white',
-              fontSize: '0.9rem',
-              fontWeight: 500,
-            },
-            
-            // Border
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'grey.400',
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'primary.main',
-            },
-            
-            // Dropdown
-            '& .MuiAutocomplete`': {
-              backgroundColor: 'black',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            },
-            '& .MuiAutocomplete-listbox': {
-              padding: 1,
-              backgroundColor: 'black',
-              color: 'white',
-              },
-            
-            // Option
-            '& .MuiAutocomplete-option': {
-              '&:hover': {
-                backgroundColor: 'black',
-              },
-              '&[aria-selected="true"]': {
-                backgroundColor: 'black',
-              },
-            },
-          }}
-          value={filter.decade}
-          onChange={(event, newValue) => {
-            console.log('Selected decade:', newValue);
-            setFilter(prev => ({...prev, decade: newValue || ''}));
-          }}
-          renderInput={(params) => <TextField {...params} label="Decades" />}
-        />
+        <Button 
+          variant="contained" 
+          onClick={() => setShowRecommended(!showRecommended)}
+        >
+          {showRecommended ? 'Hide Recommendations' : 'Show Recommendations'}
+        </Button>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <MovieTile movieData={movieData} />
-      </Box>
+      
+      {showRecommended ? (
+        <Recommended />
+      ) : (
+        <>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center', 
+            alignItems: 'center',
+            gap: 5,
+            marginBottom: '20px' 
+          }}>
+            <Autocomplete
+              disablePortal
+              id="genre-autocomplete"
+              options={genres}
+              sx={{ 
+                width: 300,
+                backgroundColor: 'black',
+                borderRadius: 2,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                color: 'white',
+                
+                // Input
+                '& .MuiInputBase-root': {
+                  padding: '2px 8px',
+                  backgroundColor: 'black',
+                  color: 'white',
+                },
+                
+                // Label
+                '& .MuiInputLabel-root': {
+                  backgroundColor: 'black',
+                  color: 'white',
+                  fontSize: '0.9rem',
+                  fontWeight: 500,
+                },
+                
+                // Border
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'grey.400',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'primary.main',
+                },
+                
+                // Dropdown
+                '& .MuiAutocomplete`': {
+                  backgroundColor: 'black',
+                  color: 'white',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                },
+                '& .MuiAutocomplete-listbox': {
+                  padding: 1,
+                  backgroundColor: 'black',
+                  color: 'white',
+                },
+                '& .MuiAutocomplete-inputFocused': {
+                  backgroundColor: 'black',
+                  color: 'white',
+                },
+                
+                // Option
+                '& .MuiAutocomplete-option': {
+                  '&:hover': {
+                    backgroundColor: 'black',
+                    color: 'white',
+                  },
+                  '&[aria-selected="true"]': {
+                    backgroundColor: 'black',
+                  },
+                },
+              }}
+              value={filter.genre}
+              onChange={(event, newValue) => {
+                console.log('Selected genre:', newValue);
+                setFilter(prev => ({...prev, genre: newValue || ''}));
+              }}
+              renderInput={(params) => <TextField {...params} label="Genres" />}
+            />        
+            <Autocomplete
+              disablePortal
+              id="decade-autocomplete"
+              options={decades}
+              sx={{ 
+                width: 300,
+                backgroundColor: 'black',
+                borderRadius: 2,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                color: 'white',
+                
+                // Input
+                '& .MuiInputBase-root': {
+                  padding: '2px 8px',
+                  backgroundColor: 'black',
+                  color: 'white',
+                },
+                
+                // Label
+                '& .MuiInputLabel-root': {
+                  backgroundColor: 'black',
+                  color: 'white',
+                  fontSize: '0.9rem',
+                  fontWeight: 500,
+                },
+                
+                // Border
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'grey.400',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'primary.main',
+                },
+                
+                // Dropdown
+                '& .MuiAutocomplete`': {
+                  backgroundColor: 'black',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                },
+                '& .MuiAutocomplete-listbox': {
+                  padding: 1,
+                  backgroundColor: 'black',
+                  color: 'white',
+                },
+                
+                // Option
+                '& .MuiAutocomplete-option': {
+                  '&:hover': {
+                    backgroundColor: 'black',
+                  },
+                  '&[aria-selected="true"]': {
+                    backgroundColor: 'black',
+                  },
+                },
+              }}
+              value={filter.decade}
+              onChange={(event, newValue) => {
+                console.log('Selected decade:', newValue);
+                setFilter(prev => ({...prev, decade: newValue || ''}));
+              }}
+              renderInput={(params) => <TextField {...params} label="Decades" />}
+            />
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <MovieTile movieData={movieData} />
+          </Box>
+        </>
+      )}
     </Box>
-  </>
-);}
+  );}
 
 export default App

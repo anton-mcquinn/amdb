@@ -1,7 +1,14 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import { addRating } from '../utils/dbConnect.ts';
+import { updateFavoriteGenres } from '../utils/userPrefs.ts';
 
 interface MovieModalProps {
   movie: {
@@ -14,14 +21,41 @@ interface MovieModalProps {
     thumbnail: string;
     release_date?: string;
     extract?: string;
+    rating?: number;
   } | null;
   open: boolean;
   onClose: () => void;
 }
 
 export default function MovieModal({ movie, open, onClose }: MovieModalProps) {
+  const [rating, setRating] = React.useState<number | null>(null);
+
   if (!movie) {
     return null;
+  }
+
+  useEffect(() => {
+    if (movie && movie.likes !== undefined) {
+      setRating(movie.likes);
+    } else {
+      setRating(null);
+    }
+  }, [movie]);
+  
+  if (!movie) {
+    return null;
+  }
+
+  const handleRatingChange = async (event: React.SyntheticEvent, newValue: number | null) => {
+    setRating(newValue);
+    if (movie.id && newValue !== null) {
+      try {
+        const response = await addRating(movie.id, newValue);
+        console.log('Rating updated:', response);
+      } catch (error) {
+        console.error('Error updating rating:', error);
+      }
+    }
   }
   
   return (
@@ -78,6 +112,21 @@ export default function MovieModal({ movie, open, onClose }: MovieModalProps) {
               {movie.year}
             </Typography>
           )}
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center', 
+              mb: 3
+            }}
+          >
+              <Rating name="movie-rating" 
+                max={5} 
+                value={rating}
+                onChange={handleRatingChange}
+              />
+          </Box>
           {movie.extract && (
             <Typography variant="body1" color="text.secondary" paragraph>
               {movie.extract}
